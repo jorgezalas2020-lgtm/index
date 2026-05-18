@@ -1,0 +1,1601 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Abeto | Jorge Alberto Zabala</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;700&display=swap');
+</style>
+<style>
+  :root {
+    --negro: #0a0a0a;
+    --carbon: #111111;
+    --grafito: #1a1a1a;
+    --grafito-claro: #222222;
+    --dorado: #c9a84c;
+    --dorado-suave: #e8c97a;
+    --dorado-oscuro: #8a6f2e;
+    --cobre: #b87333;
+    --crema: #f0e6d0;
+    --blanco-suave: #e8e0d5;
+    --gris-muted: #888880;
+    --burdeo: #4a1520;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--negro);
+    color: var(--crema);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+    cursor: default;
+  }
+
+  /* ─── SCROLLBAR ─── */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--carbon); }
+  ::-webkit-scrollbar-thumb { background: var(--dorado-oscuro); }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 4rem;
+    background: linear-gradient(to bottom, rgba(10,10,10,0.98), transparent);
+    border-bottom: 1px solid rgba(201,168,76,0.1);
+  }
+
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    font-weight: 300;
+    letter-spacing: 0.3em;
+    color: var(--dorado);
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--blanco-suave);
+    text-decoration: none;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    transition: color 0.3s;
+    opacity: 0.8;
+  }
+
+  .nav-links a:hover { color: var(--dorado); opacity: 1; }
+
+  /* ─── HERO ─── */
+  .hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    background: url('https://i.ibb.co/jPcZnMR2/Portada-P-gina-dorada.png') center center / cover no-repeat;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.8) 100%);
+  }
+
+  /* Líneas decorativas */
+  .hero-lines {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    opacity: 0.15;
+  }
+
+  .hero-lines::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 50%;
+    width: 1px;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent, var(--dorado), transparent);
+  }
+
+  .hero-lines::after {
+    content: '';
+    position: absolute;
+    top: 50%; left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--dorado), transparent);
+  }
+
+  .hero-content {
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    animation: fadeUp 1.4s ease forwards;
+  }
+
+  .hero-eyebrow {
+    font-size: 0.6rem;
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    color: var(--dorado);
+    margin-bottom: 1.5rem;
+    opacity: 0.8;
+  }
+
+  .hero-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(4rem, 10vw, 9rem);
+    font-weight: 300;
+    line-height: 0.9;
+    letter-spacing: 0.05em;
+    color: var(--crema);
+    margin-bottom: 0.5rem;
+  }
+
+  .hero-name span {
+    display: block;
+    font-style: italic;
+    color: var(--dorado);
+    font-size: clamp(4.5rem, 11vw, 10rem);
+  }
+
+  .hero-subtitle {
+    font-size: 0.7rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gris-muted);
+    margin-top: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  .hero-cta {
+    display: inline-block;
+    padding: 0.9rem 3rem;
+    border: 1px solid var(--dorado);
+    color: var(--dorado);
+    text-decoration: none;
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    transition: all 0.4s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-cta::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--dorado);
+    transform: translateX(-100%);
+    transition: transform 0.4s ease;
+    z-index: -1;
+  }
+
+  .hero-cta:hover {
+    color: var(--negro);
+  }
+
+  .hero-cta:hover::before {
+    transform: translateX(0);
+  }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 3rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    opacity: 0.4;
+    font-size: 0.55rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--dorado);
+    animation: bounce 2s infinite;
+  }
+
+  .hero-scroll::after {
+    content: '';
+    width: 1px;
+    height: 40px;
+    background: var(--dorado);
+  }
+
+  /* ─── SECTIONS GENERAL ─── */
+  section {
+    padding: 8rem 0;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 4rem;
+  }
+
+  .section-label {
+    font-size: 0.55rem;
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    color: var(--dorado);
+    margin-bottom: 1rem;
+    display: block;
+    opacity: 0.7;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--crema);
+    margin-bottom: 3rem;
+  }
+
+  .section-title em {
+    font-style: italic;
+    color: var(--dorado);
+  }
+
+  .divider {
+    width: 60px;
+    height: 1px;
+    background: linear-gradient(to right, var(--dorado), transparent);
+    margin-bottom: 3rem;
+  }
+
+  /* ─── BIO ─── */
+  .bio {
+    background: var(--grafito);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .bio::before {
+    content: '"';
+    position: absolute;
+    top: -2rem;
+    right: 4rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20rem;
+    color: var(--dorado);
+    opacity: 0.04;
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  .bio-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 6rem;
+    align-items: center;
+  }
+
+  .bio-photo {
+    position: relative;
+  }
+
+  .bio-photo-frame {
+    width: 100%;
+    aspect-ratio: 3/4;
+    background: var(--grafito-claro);
+    border: 1px solid rgba(201,168,76,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .bio-photo-frame::before {
+    content: '';
+    position: absolute;
+    top: 12px; left: 12px; right: -12px; bottom: -12px;
+    border: 1px solid rgba(201,168,76,0.1);
+    pointer-events: none;
+  }
+
+  .bio-photo-placeholder {
+    text-align: center;
+    opacity: 0.3;
+  }
+
+  .bio-photo-placeholder .icon {
+    font-size: 5rem;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .bio-photo-placeholder p {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  .bio-text p {
+    font-size: 1rem;
+    line-height: 1.9;
+    color: var(--blanco-suave);
+    margin-bottom: 1.5rem;
+    opacity: 0.85;
+  }
+
+  .bio-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 2rem;
+  }
+
+  .bio-tag {
+    padding: 0.4rem 1.2rem;
+    border: 1px solid rgba(201,168,76,0.3);
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--dorado-suave);
+  }
+
+  /* ─── MÚSICA ─── */
+  .musica {
+    background: var(--negro);
+  }
+
+  .albums-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  .album-card {
+    position: relative;
+    overflow: hidden;
+    background: var(--grafito);
+    border: 1px solid rgba(201,168,76,0.1);
+    transition: transform 0.4s, border-color 0.4s;
+    cursor: pointer;
+  }
+
+  .album-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(201,168,76,0.4);
+  }
+
+  .album-cover {
+    width: 100%;
+    aspect-ratio: 1;
+    background: linear-gradient(135deg, var(--grafito-claro), var(--burdeo));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .album-cover::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.7));
+  }
+
+  .album-info {
+    padding: 1.5rem;
+  }
+
+  .album-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    color: var(--crema);
+    margin-bottom: 0.3rem;
+  }
+
+  .album-meta {
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--dorado);
+    opacity: 0.7;
+    margin-bottom: 1rem;
+  }
+
+  .album-links {
+    display: flex;
+    gap: 0.75rem;
+  }
+
+  .album-link {
+    font-size: 0.55rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gris-muted);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .album-link:hover { color: var(--dorado); }
+
+  /* ─── SERVICIOS ─── */
+  .servicios {
+    background: var(--grafito);
+  }
+
+  .servicios-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5px;
+    background: rgba(201,168,76,0.1);
+  }
+
+  .servicio-item {
+    background: var(--grafito);
+    padding: 3.5rem;
+    transition: background 0.4s;
+    position: relative;
+  }
+
+  .servicio-item:hover {
+    background: var(--grafito-claro);
+  }
+
+  .servicio-numero {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 4rem;
+    font-weight: 300;
+    color: var(--dorado);
+    opacity: 0.2;
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+
+  .servicio-titulo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    color: var(--crema);
+    margin-bottom: 1rem;
+  }
+
+  .servicio-desc {
+    font-size: 0.85rem;
+    line-height: 1.8;
+    color: var(--gris-muted);
+    opacity: 0.9;
+  }
+
+  /* ─── BANDA / ORQUESTA ─── */
+  .banda {
+    background: var(--negro);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .banda::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 50%;
+    height: 100%;
+    background: radial-gradient(ellipse at right center, rgba(201,168,76,0.04), transparent 70%);
+    pointer-events: none;
+  }
+
+  .banda-content {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 6rem;
+    align-items: start;
+  }
+
+  .banda-text p {
+    font-size: 1rem;
+    line-height: 1.9;
+    color: var(--blanco-suave);
+    opacity: 0.8;
+    margin-bottom: 1.5rem;
+  }
+
+  .banda-info-box {
+    background: var(--grafito);
+    border-left: 2px solid var(--dorado);
+    padding: 2.5rem;
+  }
+
+  .banda-info-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    color: var(--dorado);
+    margin-bottom: 1.5rem;
+  }
+
+  .banda-info-list {
+    list-style: none;
+  }
+
+  .banda-info-list li {
+    font-size: 0.8rem;
+    color: var(--gris-muted);
+    padding: 0.6rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .banda-info-list li::before {
+    content: '◆';
+    color: var(--dorado);
+    font-size: 0.4rem;
+    opacity: 0.6;
+  }
+
+  /* ─── EVENTOS ─── */
+  .eventos {
+    background: var(--grafito);
+  }
+
+  .eventos-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .evento-item {
+    display: grid;
+    grid-template-columns: 120px 1fr auto;
+    align-items: center;
+    gap: 3rem;
+    padding: 2.5rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    transition: background 0.3s;
+    cursor: pointer;
+  }
+
+  .evento-item:hover {
+    padding-left: 1rem;
+    border-color: rgba(201,168,76,0.2);
+  }
+
+  .evento-fecha {
+    text-align: center;
+  }
+
+  .evento-dia {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem;
+    font-weight: 300;
+    color: var(--dorado);
+    line-height: 1;
+  }
+
+  .evento-mes {
+    font-size: 0.55rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gris-muted);
+  }
+
+  .evento-info h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    color: var(--crema);
+    margin-bottom: 0.3rem;
+  }
+
+  .evento-lugar {
+    font-size: 0.7rem;
+    color: var(--gris-muted);
+    letter-spacing: 0.1em;
+  }
+
+  .evento-btn {
+    display: inline-block;
+    padding: 0.6rem 2rem;
+    border: 1px solid rgba(201,168,76,0.4);
+    color: var(--dorado);
+    text-decoration: none;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    transition: all 0.3s;
+  }
+
+  .evento-btn:hover {
+    background: var(--dorado);
+    color: var(--negro);
+  }
+
+  /* ─── CONTACTO ─── */
+  .contacto {
+    background: var(--negro);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .contacto::before {
+    content: 'ABETO';
+    position: absolute;
+    bottom: -3rem;
+    right: -2rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15rem;
+    font-weight: 600;
+    color: var(--dorado);
+    opacity: 0.03;
+    letter-spacing: -0.02em;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .contacto-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+  }
+
+  .contacto-info p {
+    font-size: 1rem;
+    line-height: 1.9;
+    color: var(--blanco-suave);
+    opacity: 0.7;
+    margin-bottom: 2.5rem;
+  }
+
+  .contacto-datos {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+
+  .contacto-dato {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 0.8rem;
+    color: var(--gris-muted);
+  }
+
+  .contacto-dato-icon {
+    width: 36px;
+    height: 36px;
+    border: 1px solid rgba(201,168,76,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    color: var(--dorado);
+    flex-shrink: 0;
+  }
+
+  .social-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .social-link {
+    width: 42px;
+    height: 42px;
+    border: 1px solid rgba(201,168,76,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--dorado);
+    text-decoration: none;
+    font-size: 1rem;
+    transition: all 0.3s;
+  }
+
+  .social-link:hover {
+    background: var(--dorado);
+    color: var(--negro);
+  }
+
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+
+  .form-group label {
+    display: block;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--dorado);
+    margin-bottom: 0.6rem;
+    opacity: 0.7;
+  }
+
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    width: 100%;
+    background: var(--grafito);
+    border: 1px solid rgba(201,168,76,0.15);
+    padding: 0.9rem 1.2rem;
+    color: var(--crema);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 300;
+    outline: none;
+    transition: border-color 0.3s;
+  }
+
+  .form-group input:focus,
+  .form-group textarea:focus,
+  .form-group select:focus {
+    border-color: rgba(201,168,76,0.5);
+  }
+
+  .form-group select option {
+    background: var(--grafito);
+  }
+
+  .form-group textarea {
+    height: 140px;
+    resize: vertical;
+  }
+
+  .btn-submit {
+    width: 100%;
+    padding: 1rem;
+    background: transparent;
+    border: 1px solid var(--dorado);
+    color: var(--dorado);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.4s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-submit::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--dorado);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+    z-index: -1;
+  }
+
+  .btn-submit:hover {
+    color: var(--negro);
+  }
+
+  .btn-submit:hover::before {
+    transform: scaleX(1);
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--carbon);
+    border-top: 1px solid rgba(201,168,76,0.1);
+    padding: 3rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 300;
+    letter-spacing: 0.3em;
+    color: var(--dorado);
+    text-transform: uppercase;
+  }
+
+  .footer-copy {
+    font-size: 0.6rem;
+    color: var(--gris-muted);
+    letter-spacing: 0.1em;
+    opacity: 0.6;
+  }
+
+</head>
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(8px); }
+  }
+
+  /* ─── ANIMACIONES DE ENTRADA ─── */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  @media (max-width: 900px) {
+    nav { padding: 1.2rem 2rem; }
+    .nav-links { display: none; }
+    .container { padding: 0 2rem; }
+    .bio-grid, .banda-content, .contacto-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .albums-grid { grid-template-columns: 1fr; }
+    .servicios-grid { grid-template-columns: 1fr; }
+    .evento-item { grid-template-columns: 80px 1fr; }
+    .evento-btn { display: none; }
+    footer { flex-direction: column; gap: 1rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVEGACIÓN -->
+<nav>
+  <a href="#inicio" class="nav-logo">Abeto</a>
+  <ul class="nav-links">
+    <li><a href="#bio">Artista</a></li>
+    <li><a href="#musica">Música</a></li>
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#banda">Banda</a></li>
+    <li><a href="#eventos">Eventos</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div class="hero-bg"></div>
+  <div class="hero-lines"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Jorge Alberto Zabala</p>
+    <h1 class="hero-name"><span>"Abeto"</span></h1>
+    <p class="hero-subtitle">Cantautor · Guitarrista · Productor Musical</p>
+    <a href="#musica" class="hero-cta">Escuchar mi música</a>
+  </div>
+  <div class="hero-scroll">Desplazar</div>
+</section>
+
+<!-- BIO -->
+<section class="bio" id="bio">
+  <div class="container">
+    <div class="bio-grid">
+      <div class="bio-photo">
+        <div class="bio-photo-frame">
+          <img src="https://i.ibb.co/HLNH5Qsz/npg.jpg" style="width:100%; height:100%; object-fit:cover; object-position:center top;">
+          <div class="album-card">
+        <div class="album-cover" style="background: linear-gradient(135deg, #1a0d2e, #2e0d1a);">🎤</div>
+        <div class="album-info">
+          <h3 class="album-title">No Saber de Ti</h3>
+          <p class="album-meta">En vivo · 2025</p>
+          <div class="album-links">
+            <a href="https://www.youtube.com/watch?v=AGeL3ZfM9fk" target="_blank" class="album-link">YouTube</a>
+            <a href="https://open.spotify.com/intl-es/artist/1s7vc9pKwUmDX5bpCrHCFr" target="_blank" class="album-link">Spotify</a>
+            <a href="https://linktr.ee/jorgezalas20206" target="_blank" class="album-link">Linktree</a>
+            <div class="album-card">
+        <div class="album-cover" style="background: linear-gradient(135deg, #0d1a2e, #1a2e0d);">🤝</div>
+        <div class="album-info">
+          <h3 class="album-title">Mírame, Soy Tu Amigo</h3>
+          <p class="album-meta">Single · 2025</p>
+          <div class="album-links">
+            <a href="https://www.youtube.com/watch?v=PtxWbT6x_3M" target="_blank" class="album-link">YouTube</a>
+            <a href="https://open.spotify.com/intl-es/artist/1s7vc9pKwUmDX5bpCrHCFr" target="_blank" class="album-link">Spotify</a>
+            <a href="https://linktr.ee/jorgezalas20206" target="_blank" class="album-link">Linktree</a>
+          </div>
+        </div>
+      </div>
+    </div>
+        </div>
+      </div>
+    </div>
+      </div>
+      <div class="bio-text">
+        <span class="section-label">El Artista</span>
+        <h2 class="section-title">Una voz que <em>narra</em><br>lo que el alma siente</h2>
+        <div class="divider"></div>
+        <p>
+          ¡Hola, gracias por llegar hasta aquí! Mi nombre es Jorge Zabala — <strong style="color:var(--dorado)">"Abeto"</strong>; soy cantautor, músico compositor y productor argentino. Me dedico a crear, interpretar y difundir música para artistas independientes y no; como así también, promocionar y publicitar espectáculos en vivo.
+        </p>
+        <p>
+          Mi género musical es el pop latino, con algo de raíces folclóricas; luego de haber incursionado en grupos musicales variados. Me atrapan las canciones que cuentan historias, que muestran vivencias y relucen ejemplos de vida; enmarcándolas con sonoros arpegios, ¡creando la fantasía acorde a una consecuente melodía!
+        </p>
+        <p>
+          El transmitir, la mezcla de emociones, la calidez sonora, una letra oportuna y la melodía cómplice; haciendo al receptor partícipe de esta historia, ¡tocando las fibras más íntimas del alma! Me apasiona crear música que les dé vida a las historias, mezclando emoción, calidez, acústica e intensidad dramática, dando forma a composiciones que buscan tocar el corazón de las personas.
+        </p>
+        <p style="color:var(--dorado-suave); font-style:italic;">
+          ¡Esto es lo que hago! Pero si te interesa saber algo más, ¡me encantaría conectar con vos! Escríbeme a mis redes cuando quieras. <br><br>
+          <strong>¡Aquí te espero! — Jorge Zabala · Abeto</strong>
+        </p>
+        <div class="bio-tags">
+          <span class="bio-tag">Pop Latino</span>
+          <span class="bio-tag">Pop Rock</span>
+          <span class="bio-tag">Folclore</span>
+          <span class="bio-tag">Guitarra</span>
+          <span class="bio-tag">Bajo Eléctrico</span>
+          <span class="bio-tag">Producción</span>
+          <span class="bio-tag">Docencia</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REPRODUCTOR SPOTIFY -->
+<section style="background:var(--negro); padding:5rem 0;">
+  <div class="container">
+    <span class="section-label">Escuchame</span>
+    <h2 class="section-title">Mi música en <em>Spotify</em></h2>
+    <div class="divider"></div>
+    <div style="border:1px solid rgba(201,168,76,0.2); overflow:hidden;">
+      <iframe src="https://open.spotify.com/embed/artist/1s7vc9pKwUmDX5bpCrHCFr?utm_source=generator&theme=0" 
+        width="100%" 
+        height="380" 
+        frameBorder="0" 
+        allowfullscreen="" 
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+        loading="lazy">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<!-- VIDEO -->
+<section style="background:var(--grafito); padding:5rem 0;">
+  <div class="container">
+    <span class="section-label">En vivo</span>
+    <h2 class="section-title">Mirá mi <em>música</em></h2>
+    <div class="divider"></div>
+    <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1.5rem;">
+      <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border:1px solid rgba(201,168,76,0.2);">
+        <iframe
+          src="https://www.youtube.com/embed/kCniGtDp8BU"
+          title="Jorge Zabala - Abeto"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+          style="position:absolute; top:0; left:0; width:100%; height:100%;">
+        </iframe>
+      </div>
+      <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border:1px solid rgba(201,168,76,0.2);">
+        <iframe
+          src="https://www.youtube.com/embed/7ISS2gvUzxk"
+          title="Jorge Zabala - Abeto"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+          style="position:absolute; top:0; left:0; width:100%; height:100%;">
+        </iframe>
+      </div>
+      <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border:1px solid rgba(201,168,76,0.2);">
+        <iframe
+          src="https://www.youtube.com/embed/NrQ6HQOy9CM"
+          title="Jorge Zabala - Abeto"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+          style="position:absolute; top:0; left:0; width:100%; height:100%;">
+        </iframe>
+      </div>
+      <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border:1px solid rgba(201,168,76,0.2);">
+        <iframe
+          src="https://www.youtube.com/embed/7ZK_t2ocmFs"
+          title="Mi Mujer y Compañera"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+          style="position:absolute; top:0; left:0; width:100%; height:100%;">
+        </iframe>
+      </div>
+      <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border:1px solid rgba(201,168,76,0.2);">
+        <iframe
+          src="https://www.youtube.com/embed/AGeL3ZfM9fk"
+          title="No Saber de Ti - En Show"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+          style="position:absolute; top:0; left:0; width:100%; height:100%;">
+        </iframe>
+      </div>
+      <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border:1px solid rgba(201,168,76,0.2);">
+        <iframe
+          src="https://www.youtube.com/embed/PtxWbT6x_3M"
+          title="Mírame, soy tu amigo"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+          style="position:absolute; top:0; left:0; width:100%; height:100%;">
+        </iframe>
+      </div>
+      <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border:1px solid rgba(201,168,76,0.2);">
+        <iframe
+          src="https://www.youtube.com/embed/1iO7QbWuJ2Q"
+          title="Cóctel de Amor - Lyrics"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+          style="position:absolute; top:0; left:0; width:100%; height:100%;">
+        </iframe>
+      </div>
+      <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border:1px solid rgba(201,168,76,0.2);">
+        <iframe
+          src="https://www.youtube.com/embed/KAY8U7s5thk"
+          title="Jorge Zabala - Abeto Short"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+          style="position:absolute; top:0; left:0; width:100%; height:100%;">
+        </iframe>
+      </div>
+      <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border:1px solid rgba(201,168,76,0.2);">
+        <iframe
+          src="https://www.youtube.com/embed/tf8f2y1aC9c"
+          title="No Te Pareces a Nadie - Cover Acústico"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+          style="position:absolute; top:0; left:0; width:100%; height:100%;">
+        </iframe>
+      </div>
+      <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border:1px solid rgba(201,168,76,0.2);">
+        <iframe
+          src="https://www.youtube.com/embed/Hy31GINZbJ0"
+          title="Relájate y Sé Feliz - Video Relax"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+          style="position:absolute; top:0; left:0; width:100%; height:100%;">
+        </iframe>
+      </div>
+      <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border:1px solid rgba(201,168,76,0.2);">
+        <iframe
+          src="https://www.youtube.com/embed/8nmG_L-vmQg"
+          title="Jorge Zabala - Abeto"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+          style="position:absolute; top:0; left:0; width:100%; height:100%;">
+        </iframe>
+      </div>
+    </div>
+    <div style="text-align:center; margin-top:1.5rem;">
+      <a href="https://www.youtube.com/@jorgezabala-Abeto" target="_blank" class="hero-cta">Ver más videos en YouTube</a>
+    </div>
+  </div>
+</section>
+
+<!-- MÚSICA -->
+<section class="musica" id="musica">
+  <div class="container">
+    <span class="section-label">Discografía</span>
+    <h2 class="section-title">Mi <em>música</em></h2>
+    <div class="divider"></div>
+    <div class="albums-grid">
+      <div class="album-card">
+        <div class="album-cover" style="background: linear-gradient(135deg, #1a1a2e, #4a1520);">
+          <img src="https://i.ibb.co/bg6pRNjD/A.jpg" style="width:100%; height:100%; object-fit:cover; object-position:center top;">
+        </div>
+        <div class="album-info">
+          <h3 class="album-title">Seductora de Ocasión</h3>
+          <p class="album-meta">Single · 2026</p>
+          <div class="album-links">
+            <a href="https://www.youtube.com/watch?v=kCniGtDp8BU" target="_blank" class="album-link">YouTube</a>
+            <a href="https://open.spotify.com/intl-es/artist/1s7vc9pKwUmDX5bpCrHCFr" target="_blank" class="album-link">Spotify</a>
+            <a href="https://linktr.ee/jorgezalas20206" target="_blank" class="album-link">Linktree</a>
+          </div>
+          <button onclick="var d=this.nextElementSibling; d.style.display=d.style.display==='none'?'block':'none'; this.textContent=this.textContent==='Ver letra ▼'?'Ocultar letra ▲':'Ver letra ▼'" style="margin-top:1rem; background:transparent; border:1px solid rgba(201,168,76,0.4); color:var(--dorado); padding:0.4rem 1rem; font-size:0.6rem; letter-spacing:0.2em; text-transform:uppercase; cursor:pointer; width:100%;">Ver letra ▼</button>
+          <div style="display:none; margin-top:1rem;">
+            <iframe src="https://open.spotify.com/embed/track/5CZgwikEcUbaspm52pJFyT" width="100%" height="80" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" style="margin-bottom:1rem;"></iframe>
+            <div style="padding:1rem; background:rgba(0,0,0,0.3); border-left:2px solid var(--dorado); font-size:0.8rem; line-height:1.8; color:var(--blanco-suave);">
+            <p>Con tus ojos me incriminas<br>
+            Cuando pasas frente a mí<br>
+            Tu mirada pulsa el hielo<br>
+            Que mi alma ah de sentir.</p>
+            <br>
+            <p>Ni siquiera te conozco<br>
+            Seductora de ocasión<br>
+            Lanzas tu pelo en mi rostro<br>
+            Con total provocación.</p>
+            <br>
+            <p>Seductora seductora<br>
+            Tu que pasas frente a mí<br>
+            Pasas rosando mi cuerpo<br>
+            Mirándome de perfil</p>
+            <br>
+            <p>Seductora seductora<br>
+            Tu perfume me ha de herir<br>
+            Y mi corazón palpita<br>
+            Envenenado por ti</p>
+            <br>
+            <p><em style="color:var(--dorado); font-size:0.7rem;">Intro</em><br>
+            Seductora seductora<br>
+            Tu que pasas frente a mí<br>
+            Pasas rosando mi cuerpo<br>
+            Mirándome de perfil</p>
+            <br>
+            <p>Seductora seductora<br>
+            No me hechices así<br>
+            El misterio de tu alma<br>
+            Se apoderado de mí</p>
+            <br>
+            <p>Y mi corazón palpita<br>
+            Cuando te alejas de mi.</p>
+            <br>
+            <p style="color:var(--dorado); font-size:0.7rem; opacity:0.8;">Letra y Música: Jorge Alberto Zabala</p>
+          </div>
+        </div>
+      </div>
+      <div class="album-card">
+        <div class="album-cover" style="background: #000; padding:0;">
+          <img src="https://i.ibb.co/38e967fcb89d35fdc6a3829a/coctel.jpg" style="width:100%; height:100%; object-fit:cover;">
+        </div>
+        <div class="album-info">
+          <h3 class="album-title">Cóctel de Amor</h3>
+          <p class="album-meta">Single · 2025</p>
+          <div class="album-links">
+            <a href="https://www.youtube.com/watch?v=NrQ6HQOy9CM" target="_blank" class="album-link">Video Oficial</a>
+            <a href="https://www.youtube.com/watch?v=1iO7QbWuJ2Q" target="_blank" class="album-link">Lyrics</a>
+            <a href="https://open.spotify.com/intl-es/artist/1s7vc9pKwUmDX5bpCrHCFr" target="_blank" class="album-link">Spotify</a>
+          </div>
+          <button onclick="var d=this.nextElementSibling; d.style.display=d.style.display==='none'?'block':'none'; this.textContent=this.textContent==='Ver letra ▼'?'Ocultar letra ▲':'Ver letra ▼'" style="margin-top:1rem; background:transparent; border:1px solid rgba(201,168,76,0.4); color:var(--dorado); padding:0.4rem 1rem; font-size:0.6rem; letter-spacing:0.2em; text-transform:uppercase; cursor:pointer; width:100%;">Ver letra ▼</button>
+          <div style="display:none; margin-top:1rem;">
+            <iframe src="https://open.spotify.com/embed/track/4vluxkRDCaYdkmjjPHV8tY" width="100%" height="80" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" style="margin-bottom:1rem;"></iframe>
+            <div style="padding:1rem; background:rgba(0,0,0,0.3); border-left:2px solid var(--dorado); font-size:0.8rem; line-height:1.8; color:var(--blanco-suave);">
+            <p>Tú mi amor maldito dolor<br>
+            es tu adiós la puesta del sol<br>
+            en tu piel llevas mi ilusión<br>
+            por vivir una gran pasión</p>
+            <br>
+            <p>Mi corazón no entiende de error<br>
+            su latir solo es para vos<br>
+            en mi mente capricho y dolor<br>
+            está presente el desamor</p>
+            <br>
+            <p><em style="color:var(--dorado); font-size:0.7rem;">Estribillo</em><br>
+            Al comenzar mis mañanas<br>
+            veo el reflejo del sol<br>
+            y que me trae tu imagen<br>
+            que es como una gran visión<br>
+            Siento en la brisa el perfume<br>
+            dulces glicinas en flor<br>
+            que al mezclarse con mis penas<br>
+            forman un cóctel de amor.</p>
+            <br>
+            <p><em style="color:var(--dorado); font-size:0.7rem;">Introducción</em><br>
+            Es tu adiós un día sin sol<br>
+            sin tu piel desesperación<br>
+            qué más da los días sin vos<br>
+            por vivir una decepción.</p>
+            <br>
+            <p>No hay barcos sin puertos ni mar<br>
+            ni una flor sin agua y tierra<br>
+            vos y yo el universo<br>
+            solo estoy en un desierto.</p>
+            <br>
+            <p><em style="color:var(--dorado); font-size:0.7rem;">Estribillo</em><br>
+            Al comenzar mis mañanas<br>
+            veo el reflejo del sol<br>
+            y que me trae tu imagen<br>
+            que es como una gran visión<br>
+            Siento en la brisa el perfume<br>
+            dulces glicinas en flor<br>
+            que al mezclarse con mis penas<br>
+            forman un cóctel de amor.</p>
+            <br>
+            <p style="color:var(--dorado); font-size:0.7rem; opacity:0.8;">Letra y Música: Jorge Alberto Zabala</p>
+          </div>
+        </div>
+      </div>
+      <div class="album-card">
+        <div class="album-cover" style="background: #000; padding:0;">
+          <img src="https://i.ibb.co/YTLxxMF3/1-Im-gen-portada1400-x-1400.jpg" style="width:100%; height:100%; object-fit:cover;">
+        </div>
+        <div class="album-info">
+          <h3 class="album-title">Arco Iris de Nuevo Color</h3>
+          <p class="album-meta">Single · 2022</p>
+          <div class="album-links">
+            <a href="https://www.youtube.com/watch?v=7ISS2gvUzxk" target="_blank" class="album-link">YouTube</a>
+            <a href="https://open.spotify.com/intl-es/artist/1s7vc9pKwUmDX5bpCrHCFr" target="_blank" class="album-link">Spotify</a>
+            <a href="https://linktr.ee/jorgezalas20206" target="_blank" class="album-link">Linktree</a>
+          </div>
+          <button onclick="var d=this.nextElementSibling; d.style.display=d.style.display==='none'?'block':'none'; this.textContent=this.textContent==='Ver letra ▼'?'Ocultar letra ▲':'Ver letra ▼'" style="margin-top:1rem; background:transparent; border:1px solid rgba(201,168,76,0.4); color:var(--dorado); padding:0.4rem 1rem; font-size:0.6rem; letter-spacing:0.2em; text-transform:uppercase; cursor:pointer; width:100%;">Ver letra ▼</button>
+          <div style="display:none; margin-top:1rem;">
+            <iframe src="https://open.spotify.com/embed/track/6xGnMJG9lxNKv6vnGlzctL" width="100%" height="80" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" style="margin-bottom:1rem;"></iframe>
+            <div style="padding:1rem; background:rgba(0,0,0,0.3); border-left:2px solid var(--dorado); font-size:0.8rem; line-height:1.8; color:var(--blanco-suave);">
+            <p>No imaginaba, volver a vivir<br>
+            un mundo nuevo, que me haga feliz<br>
+            diez mil caricias, guardé para ti<br>
+            y un sueño infinito, para compartir</p>
+            <br>
+            <p>Voy a imaginarme cuando este con vos<br>
+            Siento el latido de tu corazón<br>
+            Que me embriaga los sentimientos<br>
+            Sos, la luz que mis noches iluminó<br>
+            Un arco iris de nuevo color<br>
+            esperanza de un mundo mejor.</p>
+            <br>
+            <p>Sembré en mis sueños, rosas y jazmín<br>
+            puse en las nubes aguas y alelí<br>
+            perfume en el campo, puse para ti<br>
+            y un camino amplio, que te traiga a mí.</p>
+            <br>
+            <p>Voy a imaginarme cuando este con vos<br>
+            Siento el latido de tu corazón<br>
+            Que me embriaga los sentimientos<br>
+            Sos, la luz que mis noches iluminó<br>
+            Un arco iris de nuevo color<br>
+            esperanza de un mundo mejor.</p>
+            <br>
+            <p>Y al cielo yo le pido…<br>
+            mi sueño concebir<br>
+            y a mis miedos convertirlos<br>
+            bendiciones para ti (2 veces)<br>
+            bendiciones para TI…<br>
+            Hoy el camino ya se iluminó<br>
+            el gran día al fin llegó<br>
+            y en mis brazos…<br>
+            te acunan hoy…</p>
+            <br>
+            <p style="color:var(--dorado); font-size:0.7rem; opacity:0.8;">Letra y Música: Jorge Alberto Zabala</p>
+          </div>
+        </div>
+      </div>
+      <div class="album-card">
+        <div class="album-cover" style="background: linear-gradient(135deg, #2e1a0d, #1a1a0d);">❤️</div>
+        <div class="album-info">
+          <h3 class="album-title">Mi Mujer y Compañera</h3>
+          <p class="album-meta">Single · 2020</p>
+          <div class="album-links">
+            <a href="https://www.youtube.com/watch?v=7ZK_t2ocmFs" target="_blank" class="album-link">YouTube</a>
+            <a href="https://open.spotify.com/intl-es/artist/1s7vc9pKwUmDX5bpCrHCFr" target="_blank" class="album-link">Spotify</a>
+            <a href="https://linktr.ee/jorgezalas20206" target="_blank" class="album-link">Linktree</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p style="text-align:center; margin-top:3rem; font-size:0.7rem; color:var(--gris-muted); letter-spacing:0.1em; opacity:0.6;">
+      Podés agregar aquí tus lanzamientos reales con links a Spotify, YouTube, etc.
+    </p>
+  </div>
+</section>
+
+<!-- HOBBIES -->
+<section style="background:var(--grafito); padding:8rem 0;">
+  <div class="container">
+    <span class="section-label">Más allá de la música</span>
+    <h2 class="section-title">Mis <em>hobbies</em></h2>
+    <div class="divider"></div>
+    <p style="color:var(--gris-muted); font-size:0.9rem; line-height:1.8; margin-bottom:3rem; opacity:0.8;">
+      La música no es lo único que me apasiona. El ciclismo y los viajes son parte de mi vida, me dan energía y me inspiran a crear. ¡La vida es movimiento!
+    </p>
+    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem;">
+      <div style="overflow:hidden; border:1px solid rgba(201,168,76,0.2); position:relative; cursor:zoom-in;" onclick="var lb=document.getElementById('lightbox'); document.getElementById('lightbox-img').src=this.querySelector('img').src; lb.style.display='flex';">
+        <img src="https://i.ibb.co/QjXWn2tK/Zonda.jpg" style="width:100%; height:300px; object-fit:cover; transition:transform 0.4s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+        <div style="position:absolute; bottom:0; left:0; right:0; padding:1rem; background:linear-gradient(transparent, rgba(0,0,0,0.8)); color:var(--crema); font-size:0.7rem; letter-spacing:0.2em; text-transform:uppercase;">🏔️ Cañón del Zonda · San Juan</div>
+      </div>
+      <div style="overflow:hidden; border:1px solid rgba(201,168,76,0.2); position:relative; cursor:zoom-in;" onclick="var lb=document.getElementById('lightbox'); document.getElementById('lightbox-img').src=this.querySelector('img').src; lb.style.display='flex';">
+        <img src="https://i.ibb.co/Ts7xwtQ/Carrera-Tour-de-Francia.jpg" style="width:100%; height:300px; object-fit:cover; transition:transform 0.4s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+        <div style="position:absolute; bottom:0; left:0; right:0; padding:1rem; background:linear-gradient(transparent, rgba(0,0,0,0.8)); color:var(--crema); font-size:0.7rem; letter-spacing:0.2em; text-transform:uppercase;">🚴 Tour de Francia · 2016</div>
+      </div>
+      <div style="overflow:hidden; border:1px solid rgba(201,168,76,0.2); position:relative; cursor:zoom-in;" onclick="var lb=document.getElementById('lightbox'); document.getElementById('lightbox-img').src=this.querySelector('img').src; lb.style.display='flex';">
+        <img src="https://i.ibb.co/4ZDR4DPY/Whats-App-Image-2025-12-24-at-00-48-53.jpg" style="width:100%; height:300px; object-fit:cover; transition:transform 0.4s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+        <div style="position:absolute; bottom:0; left:0; right:0; padding:1rem; background:linear-gradient(transparent, rgba(0,0,0,0.8)); color:var(--crema); font-size:0.7rem; letter-spacing:0.2em; text-transform:uppercase;">🚴 Ciclismo · Mi pasión</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARTIR -->
+<section style="background:var(--grafito); padding:4rem 0;">
+  <div class="container" style="text-align:center;">
+    <span class="section-label">Compartí mi música</span>
+    <h2 class="section-title">¡Compartí con tus <em>amigos</em>!</h2>
+    <div class="divider" style="margin:0 auto 2rem;"></div>
+    <p style="color:var(--gris-muted); font-size:0.85rem; margin-bottom:2rem;">Si te gusta mi música, compartila con quien quieras 🎵</p>
+    <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:1rem;">
+      <a href="https://www.facebook.com/sharer/sharer.php?u=https://jorgezabalaoficial.com" target="_blank" style="display:flex; align-items:center; gap:0.5rem; padding:0.8rem 1.5rem; border:1px solid rgba(201,168,76,0.3); color:var(--crema); text-decoration:none; font-size:0.7rem; letter-spacing:0.2em; text-transform:uppercase; transition:all 0.3s; background:rgba(24,119,242,0.15);">
+        📘 Facebook
+      </a>
+      <a href="https://wa.me/?text=Escuchá la música de Jorge Zabala Abeto: https://jorgezabalaoficial.com" target="_blank" style="display:flex; align-items:center; gap:0.5rem; padding:0.8rem 1.5rem; border:1px solid rgba(201,168,76,0.3); color:var(--crema); text-decoration:none; font-size:0.7rem; letter-spacing:0.2em; text-transform:uppercase; transition:all 0.3s; background:rgba(37,211,102,0.15);">
+        💬 WhatsApp
+      </a>
+      <a href="https://www.instagram.com/jorgezabala.abeto" target="_blank" style="display:flex; align-items:center; gap:0.5rem; padding:0.8rem 1.5rem; border:1px solid rgba(201,168,76,0.3); color:var(--crema); text-decoration:none; font-size:0.7rem; letter-spacing:0.2em; text-transform:uppercase; transition:all 0.3s; background:rgba(225,48,108,0.15);">
+        📸 Instagram
+      </a>
+      <a href="https://www.youtube.com/@jorgezabala-Abeto" target="_blank" style="display:flex; align-items:center; gap:0.5rem; padding:0.8rem 1.5rem; border:1px solid rgba(201,168,76,0.3); color:var(--crema); text-decoration:none; font-size:0.7rem; letter-spacing:0.2em; text-transform:uppercase; transition:all 0.3s; background:rgba(255,0,0,0.15);">
+        ▶️ YouTube
+      </a>
+      <a href="https://www.tiktok.com/@jorgezabala2745" target="_blank" style="display:flex; align-items:center; gap:0.5rem; padding:0.8rem 1.5rem; border:1px solid rgba(201,168,76,0.3); color:var(--crema); text-decoration:none; font-size:0.7rem; letter-spacing:0.2em; text-transform:uppercase; transition:all 0.3s; background:rgba(0,0,0,0.3);">
+        🎵 TikTok
+      </a>
+      <a href="https://music.apple.com/library/albums/l.73gTHAB" target="_blank" style="display:flex; align-items:center; gap:0.5rem; padding:0.8rem 1.5rem; border:1px solid rgba(201,168,76,0.3); color:var(--crema); text-decoration:none; font-size:0.7rem; letter-spacing:0.2em; text-transform:uppercase; transition:all 0.3s; background:rgba(252,60,68,0.15);">
+        🍎 Apple Music
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" onclick="this.style.display='none'" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.95); z-index:9999; align-items:center; justify-content:center; cursor:zoom-out;">
+  <img id="lightbox-img" style="max-width:90%; max-height:90vh; object-fit:contain; border:1px solid rgba(201,168,76,0.3);">
+  <span onclick="document.getElementById('lightbox').style.display='none'" style="position:absolute; top:1rem; right:2rem; color:var(--dorado); font-size:2rem; cursor:pointer;">✕</span>
+</div>
+
+<!-- GALERÍA -->
+<section style="background:var(--negro); padding:8rem 0;">
+  <div class="container">
+    <span class="section-label">Momentos</span>
+    <h2 class="section-title">Galería de <em>fotos</em></h2>
+    <div class="divider"></div>
+    <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:1rem;">
+      <div style="overflow:hidden; border:1px solid rgba(201,168,76,0.2); aspect-ratio:1; cursor:zoom-in;" onclick="var lb=document.getElementById('lightbox'); document.getElementById('lightbox-img').src=this.querySelector('img').src; lb.style.display='flex';">
+        <img src="https://i.ibb.co/9H3KVZGj/Sin-marca.jpg" style="width:100%;height:100%;object-fit:cover;transition:transform 0.4s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+      </div>
+      <div style="overflow:hidden; border:1px solid rgba(201,168,76,0.2); aspect-ratio:1; cursor:zoom-in;" onclick="var lb=document.getElementById('lightbox'); document.getElementById('lightbox-img').src=this.querySelector('img').src; lb.style.display='flex';">
+        <img src="https://i.ibb.co/tTvHY3KG/Whats-App-Image-2026-01-25-at-00-41-09.jpg" style="width:100%;height:100%;object-fit:cover;transition:transform 0.4s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+      </div>
+      <div style="overflow:hidden; border:1px solid rgba(201,168,76,0.2); aspect-ratio:1; cursor:zoom-in;" onclick="var lb=document.getElementById('lightbox'); document.getElementById('lightbox-img').src=this.querySelector('img').src; lb.style.display='flex';">
+        <img src="https://i.ibb.co/27LJxsZs/Foto-portada-product.png" style="width:100%;height:100%;object-fit:cover;transition:transform 0.4s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+      </div>
+      <div style="overflow:hidden; border:1px solid rgba(201,168,76,0.2); aspect-ratio:1; cursor:zoom-in;" onclick="var lb=document.getElementById('lightbox'); document.getElementById('lightbox-img').src=this.querySelector('img').src; lb.style.display='flex';">
+        <img src="https://i.ibb.co/RkcRMkbp/1400x1400-png.png" style="width:100%;height:100%;object-fit:cover;transition:transform 0.4s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+      </div>
+      <div style="overflow:hidden; border:1px solid rgba(201,168,76,0.2); aspect-ratio:1; cursor:zoom-in;" onclick="var lb=document.getElementById('lightbox'); document.getElementById('lightbox-img').src=this.querySelector('img').src; lb.style.display='flex';">
+        <img src="https://i.ibb.co/rRPMsNC2/npg.jpg" style="width:100%;height:100%;object-fit:cover;transition:transform 0.4s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+      </div>
+      <div style="overflow:hidden; border:1px solid rgba(201,168,76,0.2); aspect-ratio:1; cursor:zoom-in;" onclick="var lb=document.getElementById('lightbox'); document.getElementById('lightbox-img').src=this.querySelector('img').src; lb.style.display='flex';">
+        <img src="https://i.ibb.co/dZR5wkh/Whats-App-Image-2025-12-30-at-01-03-00.jpg" style="width:100%;height:100%;object-fit:cover;transition:transform 0.4s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+      </div>
+      <div style="overflow:hidden; border:1px solid rgba(201,168,76,0.2); aspect-ratio:1; cursor:zoom-in;" onclick="var lb=document.getElementById('lightbox'); document.getElementById('lightbox-img').src=this.querySelector('img').src; lb.style.display='flex';">
+        <img src="https://i.ibb.co/j9nh0dQN/Whats-App-Image-2025-12-15-at-21-42-46-1.jpg" style="width:100%;height:100%;object-fit:cover;transition:transform 0.4s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+      </div>
+      <div style="overflow:hidden; border:1px solid rgba(201,168,76,0.2); aspect-ratio:1; cursor:zoom-in;" onclick="var lb=document.getElementById('lightbox'); document.getElementById('lightbox-img').src=this.querySelector('img').src; lb.style.display='flex';">
+        <img src="https://i.ibb.co/xSPkK6sB/Whats-App-Image-2025-12-24-at-00-41-17-2.jpg" style="width:100%;height:100%;object-fit:cover;transition:transform 0.4s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+      </div>
+      <div style="overflow:hidden; border:1px solid rgba(201,168,76,0.2); aspect-ratio:1; cursor:zoom-in;" onclick="var lb=document.getElementById('lightbox'); document.getElementById('lightbox-img').src=this.querySelector('img').src; lb.style.display='flex';">
+        <img src="https://i.ibb.co/jkcQWFxS/Whats-App-Image-2025-12-24-at-00-47-48.jpg" style="width:100%;height:100%;object-fit:cover;transition:transform 0.4s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+      </div>
+      <div style="overflow:hidden; border:1px solid rgba(201,168,76,0.2); aspect-ratio:1; cursor:zoom-in;" onclick="var lb=document.getElementById('lightbox'); document.getElementById('lightbox-img').src=this.querySelector('img').src; lb.style.display='flex';">
+        <img src="https://i.ibb.co/zVPW9mqd/Whats-App-Image-2025-12-24-at-01-09-34-1.jpg" style="width:100%;height:100%;object-fit:cover;transition:transform 0.4s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+      </div>
+      <div style="overflow:hidden; border:1px solid rgba(201,168,76,0.2); aspect-ratio:1; cursor:zoom-in;" onclick="var lb=document.getElementById('lightbox'); document.getElementById('lightbox-img').src=this.querySelector('img').src; lb.style.display='flex';">
+        <img src="https://i.ibb.co/zVnw2RBD/IMG-20220828-WA0031.jpg" style="width:100%;height:100%;object-fit:cover;transition:transform 0.4s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+      </div>
+      <div style="overflow:hidden; border:1px solid rgba(201,168,76,0.2); aspect-ratio:1; cursor:zoom-in;" onclick="var lb=document.getElementById('lightbox'); document.getElementById('lightbox-img').src=this.querySelector('img').src; lb.style.display='flex';">
+        <img src="https://i.ibb.co/SDNzx8Z0/Screenshot-20230601-184444.png" style="width:100%;height:100%;object-fit:cover;transition:transform 0.4s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+      </div>
+      <div style="overflow:hidden; border:1px solid rgba(201,168,76,0.2); aspect-ratio:1; cursor:zoom-in;" onclick="var lb=document.getElementById('lightbox'); document.getElementById('lightbox-img').src=this.querySelector('img').src; lb.style.display='flex';">
+        <img src="https://i.ibb.co/bR8nhN4m/2-INICIO.png" style="width:100%;height:100%;object-fit:cover;transition:transform 0.4s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+      </div>
+      <div style="overflow:hidden; border:1px solid rgba(201,168,76,0.2); aspect-ratio:1; cursor:zoom-in;" onclick="var lb=document.getElementById('lightbox'); document.getElementById('lightbox-img').src=this.querySelector('img').src; lb.style.display='flex';">
+        <img src="https://i.ibb.co/KzxXPXHy/2.jpg" style="width:100%;height:100%;object-fit:cover;transition:transform 0.4s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+      </div>
+      <div style="overflow:hidden; border:1px solid rgba(201,168,76,0.2); aspect-ratio:1; cursor:zoom-in;" onclick="var lb=document.getElementById('lightbox'); document.getElementById('lightbox-img').src=this.querySelector('img').src; lb.style.display='flex';">
+        <img src="https://i.ibb.co/zT3NMYJT/750-P.jpg" style="width:100%;height:100%;object-fit:cover;transition:transform 0.4s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+      </div>
+      <div style="overflow:hidden; border:1px solid rgba(201,168,76,0.2); aspect-ratio:1; cursor:zoom-in;" onclick="var lb=document.getElementById('lightbox'); document.getElementById('lightbox-img').src=this.querySelector('img').src; lb.style.display='flex';">
+        <img src="https://i.ibb.co/B52PST9V/Whats-App-Image-2025-12-15-at-21-42-45.jpg" style="width:100%;height:100%;object-fit:cover;transition:transform 0.4s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+      </div>
+      <div style="overflow:hidden; border:1px solid rgba(201,168,76,0.2); aspect-ratio:1; cursor:zoom-in;" onclick="var lb=document.getElementById('lightbox'); document.getElementById('lightbox-img').src=this.querySelector('img').src; lb.style.display='flex';">
+        <img src="https://i.ibb.co/7dFcpLRj/11.jpg" style="width:100%;height:100%;object-fit:cover;transition:transform 0.4s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+      </div>
+      <div style="overflow:hidden; border:1px solid rgba(201,168,76,0.2); aspect-ratio:1; cursor:zoom-in;" onclick="var lb=document.getElementById('lightbox'); document.getElementById('lightbox-img').src=this.querySelector('img').src; lb.style.display='flex';">
+        <img src="https://i.ibb.co/93Z3ZPm7/FOTO-PERFIL-1.jpg" style="width:100%;height:100%;object-fit:cover;transition:transform 0.4s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICIOS -->
+<section class="servicios" id="servicios">
+  <div class="container">
+    <span class="section-label">Lo que ofrezco</span>
+    <h2 class="section-title">Servicios <em>profesionales</em></h2>
+    <div class="divider"></div>
+    <!-- LOGO PRODUCTORA -->
+    <div style="text-align:center; margin-bottom:3rem;">
+      <div style="display:inline-block; border:2px solid var(--dorado); padding:2rem 3rem; position:relative;">
+        <div style="font-family:'Cormorant Garamond',serif; font-size:4rem; font-weight:600; color:var(--dorado); line-height:1; letter-spacing:0.1em;">JZ</div>
+        <div style="font-size:0.7rem; letter-spacing:0.4em; text-transform:uppercase; color:var(--crema); margin-top:0.5rem;">Jorge Zabala Record</div>
+        <div style="font-size:0.55rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--gris-muted); margin-top:0.3rem; opacity:0.7;">Producción Musical Independiente</div>
+      </div>
+    </div>
+    <div class="servicios-grid">
+      <div class="servicio-item">
+        <div class="servicio-numero">01</div>
+        <h3 class="servicio-titulo">Producción Musical</h3>
+        <p class="servicio-desc">Producción completa de tracks y álbumes en géneros como Pop Latino, Pop Rock, Folclore y más. Desde la idea inicial hasta el master final.</p>
+      </div>
+      <div class="servicio-item">
+        <div class="servicio-numero">02</div>
+        <h3 class="servicio-titulo">Composición & Arreglos</h3>
+        <p class="servicio-desc">Composición de canciones originales y arreglos musicales por encargo para artistas solistas, bandas y proyectos audiovisuales.</p>
+      </div>
+      <div class="servicio-item">
+        <div class="servicio-numero">03</div>
+        <h3 class="servicio-titulo">Clases de Música</h3>
+        <p class="servicio-desc">Clases personalizadas de guitarra, bajo eléctrico, composición y producción musical para todos los niveles. Formación integral del músico.</p>
+      </div>
+      <div class="servicio-item">
+        <div class="servicio-numero">04</div>
+        <h3 class="servicio-titulo">Mezcla & Masterización</h3>
+        <p class="servicio-desc">Servicio profesional de mezcla y masterización para dar el sonido final que tu música merece, listo para plataformas digitales.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BANDA -->
+<section class="banda" id="banda">
+  <div class="container">
+    <div class="banda-content">
+      <div class="banda-text">
+        <span class="section-label">El Proyecto</span>
+        <h2 class="section-title">Banda &<br><em>Orquesta</em></h2>
+        <div class="divider"></div>
+        <p>
+          "Abeto" encabeza un proyecto musical en constante evolución, que convoca a músicos de distintas trayectorias para crear un sonido colectivo potente y emotivo. La propuesta abarca desde formatos de banda eléctrica hasta arreglos orquestales que enriquecen el repertorio.
+        </p>
+        <p>
+          Si sos músico y te interesa sumarte al proyecto, completá el formulario de contacto indicando tu instrumento y experiencia. Las puertas están abiertas para quienes compartan la misma pasión por la música hecha con alma.
+        </p>
+        <a href="#contacto" class="hero-cta" style="margin-top:1rem; display:inline-block;">Quiero sumarme</a>
+      </div>
+      <div>
+        <div class="banda-info-box">
+          <h4 class="banda-info-title">Información para contrataciones</h4>
+          <ul class="banda-info-list">
+            <li>Conciertos en vivo (formato íntimo o gran escena)</li>
+            <li>Presentaciones corporativas y eventos privados</li>
+            <li>Festivales y ciclos culturales</li>
+            <li>Shows con banda completa u orquesta</li>
+            <li>Repertorio variado: Pop, Rock, Folclore y más</li>
+            <li>Rider técnico disponible a consulta</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EVENTOS -->
+<section class="eventos" id="eventos">
+  <div class="container">
+    <span class="section-label">Agenda</span>
+    <h2 class="section-title">Próximos <em>conciertos</em></h2>
+    <div class="divider"></div>
+    <div class="eventos-list">
+      <div class="evento-item">
+        <div class="evento-fecha">
+          <div class="evento-dia">15</div>
+          <div class="evento-mes">Mayo 2025</div>
+        </div>
+        <div class="evento-info">
+          <h3>Noche de Cantautores</h3>
+          <p class="evento-lugar">🎭 Teatro Municipal · Tu ciudad</p>
+        </div>
+        <a href="#" class="evento-btn">Entradas</a>
+      </div>
+      <div class="evento-item">
+        <div class="evento-fecha">
+          <div class="evento-dia">28</div>
+          <div class="evento-mes">Jun 2025</div>
+        </div>
+        <div class="evento-info">
+          <h3>Festival de Verano</h3>
+          <p class="evento-lugar">🎪 Anfiteatro Provincial · Tu ciudad</p>
+        </div>
+        <a href="#" class="evento-btn">Entradas</a>
+      </div>
+      <div class="evento-item">
+        <div class="evento-fecha">
+          <div class="evento-dia">10</div>
+          <div class="evento-mes">Ago 2025</div>
+        </div>
+        <div class="evento-info">
+          <h3>Concierto con Orquesta</h3>
+          <p class="evento-lugar">🎻 Centro Cultural · Tu ciudad</p>
+        </div>
+        <a href="#" class="evento-btn">Entradas</a>
+      </div>
+    </div>
+    <p style="margin-top:2rem; font-size:0.7rem; color:var(--gris-muted); opacity:0.6; text-align:center; letter-spacing:0.1em;">
+      Reemplazá estos eventos con tus fechas reales
+    </p>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section class="contacto" id="contacto">
+  <div class="container">
+    <div class="contacto-grid">
+      <div class="contacto-info">
+        <span class="section-label">Hablemos</span>
+        <h2 class="section-title">Ponete en <em>contacto</em></h2>
+        <div class="divider"></div>
+        <p>
+          Ya sea para contrataciones, producción musical, clases o para sumarte al proyecto, estoy disponible para escucharte. Cada propuesta es bienvenida.
+        </p>
+        <div class="contacto-datos">
+          <div class="contacto-dato">
+            <div class="contacto-dato-icon">✉</div>
+            <a href="mailto:jorgezalas2020@gmail.com" style="color:inherit; text-decoration:none;">jorgezalas2020@gmail.com</a>
+          </div>
+          <div class="contacto-dato">
+            <div class="contacto-dato-icon">📞</div>
+            <span>+54 · Tu número aquí</span>
+          </div>
+          <div class="contacto-dato">
+            <div class="contacto-dato-icon">📍</div>
+            <span>Argentina</span>
+          </div>
+        </div>
+        <div class="social-links">
+          <a href="https://www.instagram.com/jorgezabala.abeto" target="_blank" class="social-link" title="Instagram">📸</a>
+          <a href="https://www.facebook.com/jorgezabala21" target="_blank" class="social-link" title="Facebook">f</a>
+          <a href="https://open.spotify.com/intl-es/artist/1s7vc9pKwUmDX5bpCrHCFr" target="_blank" class="social-link" title="Spotify">♪</a>
+          <a href="https://www.youtube.com/@jorgezabala-Abeto" target="_blank" class="social-link" title="YouTube">▶</a>
+          <a href="https://linktr.ee/jorgezalas20206" target="_blank" class="social-link" title="Linktree">🌿</a>
+          <a href="https://jorgezalas2020.wixsite.com/website" target="_blank" class="social-link" title="Sitio Wix">🌐</a>
+        </div>
+      </div>
+      <div class="contacto-form">
+        <div class="form-group">
+          <label>Nombre completo</label>
+          <input type="text" placeholder="Tu nombre">
+        </div>
+        <div class="form-group">
+          <label>Correo electrónico</label>
+          <input type="email" placeholder="tu@email.com">
+        </div>
+        <div class="form-group">
+          <label>Motivo del contacto</label>
+          <select>
+            <option value="">Seleccioná una opción</option>
+            <option>Contratación / Show</option>
+            <option>Producción Musical</option>
+            <option>Clases de Música</option>
+            <option>Sumarme a la banda</option>
+            <option>Otro</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Mensaje</label>
+          <textarea placeholder="Contame en qué te puedo ayudar..."></textarea>
+        </div>
+        <button class="btn-submit">Enviar mensaje</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Abeto</div>
+  <div class="footer-copy">© 2025 Jorge Alberto Zabala "Abeto" · Todos los derechos reservados</div>
+</footer>
+
+</body>
+</html>
